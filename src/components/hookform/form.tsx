@@ -14,6 +14,7 @@ function YoutubeForm(props) {
   const { register, control, handleSubmit } = form;
 
   const onSubmit = (data: FormValues) => {
+    alert(JSON.stringify(data))
     console.log("form submitteed", data)
   }
 
@@ -21,14 +22,13 @@ function YoutubeForm(props) {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username"></label>
-        <input type="text" id="username" {...register("username")} />
+        <input type="text" placeholder="username" id="username" {...register("username", { required: true, maxLength: 20 })} />
         <label htmlFor="email"></label>
-        <input type="email" id="email" {...register("email")}></input>
+        <input placeholder="email" type="email" id="email" {...register("email", { pattern: /^[A-Za-z]+$/i })}></input>
         <label htmlFor="channel"></label>
-        <input type="text" id="channel" {...register("channel")}></input>
+        <input type="text" placeholder="channel" id="channel" {...register("channel")}></input>
         <button>Submit</button>
       </form>
-      <DevTool control={control} />
     </div>
   );
 }
