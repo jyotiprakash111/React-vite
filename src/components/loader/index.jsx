@@ -1,41 +1,31 @@
 import React,{useEffect, useState} from 'react';
 import axios from 'axios';
-
-const options = {
-    method: 'GET',
-    url: 'https://weatherapi-com.p.rapidapi.com/future.json',
-    params: {
-      q: 'London',
-      dt: '2022-12-25'
-    },
-    headers: {
-      'x-rapidapi-key': 'Sign Up for Key',
-      'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com'
-    }
-  };
   
   export default function Loading({show}) {
     const [post, setPost] = useState(null);
 
     
-  useEffect(()=>{
-    axios.request(options).then(function (response) {
-        console.log(response.data);
-    }).catch(function (error) {
-        console.error(error);
-    });
-  },[]);
+  // useEffect(()=>{
+  //   axios.request(options).then(function (response) {
+  //       console.log(response.data);
+  //   }).catch(function (error) {
+  //       console.error(error);
+  //   });
+  // },[]);
   
-    // useEffect(() => {
-    // //   fetch('https://jsonplaceholder.typicode.com/posts/1')
-    // fetch("https://weatherapi-com.p.rapidapi.com/future.json")
-    //     .then(response => response.json())
-    //     .then(res=> {
-    //         const {body} = res;
-    //         setPost(body);
-    //     });
-       
-    // }, []);
+  useEffect(() => {
+    fetch('https://api.restful-api.dev/objects?id=3&id=5&id=10')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // This will log the entire JSON response
+        setPost(data.map(item => item.id && item.name).join(", ")); // Assuming setPost expects a string of IDs
+      })
+      .catch(error => {
+        console.error('Error fetching the data:', error);
+      });
+  }, []);
+  
+
   return (
     <div>
       <div

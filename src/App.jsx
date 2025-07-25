@@ -6,6 +6,7 @@ import HookForm from "./components/hookform/form";
 // import TailwindLoginform from "./tailwindcss/login";
 // import TailwindEcom from '../tailwindframework/Ecomm';
 import Pagination from './components/pagination';
+import Loader from "./components/loader";
 
 function App() {
   const [results, setResults] = useState([]);
@@ -14,7 +15,7 @@ function App() {
       <div className="search-bar-container">
         {/* <Searchbar setResults={setResults} />
       <SearchResults results={results} /> */}
-        <Pagination />
+        <Loader />
       </div>
     </div>
   );
